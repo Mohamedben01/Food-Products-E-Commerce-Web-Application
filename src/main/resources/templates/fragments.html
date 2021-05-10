@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+
+<body>
+<!-- Scroll Up Button-->
+  <div th:fragment="scrollup" class="scroll-up-btn">
+    <i class="fas fa-angle-up"></i>
+  </div>
+<!--NavBar-->
+    <div th:fragment="menu" class="navigation-wrap bg-light start-header start-style">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="navbar navbar-expand-md navbar-light">
+            
+              <a class="navbar-brand" href="#" target="_blank"><img src="/images/logo1.png" alt=""></a>
+              <a class="navbar-brand" href="#" traget="_blank"><h2 class="nameBar">Med<span style="color: crimson;">One</span> Shop</h2></a>	
+              
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto py-4 py-md-0">
+                  <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                    <a class="nav-link" th:href="@{/customerHome}">Home</a>
+                  </li> 
+                  <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" aria-disable="true">Profile</a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" th:href="@{/profile}">My Account</a>
+                      <a class="dropdown-item" th:href="@{/customer/histories}">History</a>
+                      <a class="dropdown-item" th:href="@{/shoppingCart}">Settings</a>
+                      <a class="dropdown-item" data-toggle="modal" data-target="#myModal" href="#myModal">Contact</a>
+                    </div>
+                  </li>
+                  
+                  <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                    <a class="nav-link" th:href="@{/shoppingCart}">My Cart 
+                        <span th:text="${nbrItems}" id="itemCount" 
+                        style="position: absolute;top: -5px;right: -23px;width: 25px;height: 25px;border: 1px solid;border-radius: 50%;background: #dbdbdb;color: crimson;text-align: center;font-family: sans-serif;font-weight: 600;"></span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+             
+            </nav>		
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- First Small footer section -->
+    <footer th:fragment="firstfooter" class="first-footer">
+        <div class="row justify-content-around mb-0 pt-5 pb-0 ">
+            <div class=" col-11">
+                <div class="row justify-content-center">
+                    <div class="col-md-3 col-12 font-italic align-items-center mt-md-3 mt-4">
+                        <h5><span> <img src="/images/logo1.png" class="img-fluid mb-1 w-20 h-20 "></span><b class="text-dark"> Med<span style="color: crimson;">One</span><span class="text-muted"> Shop</span></b></h5>
+                        <p class="social mt-md-3 mt-2"> 
+                          <span><i class="fab fa-instagram" style="font-size:36px"></i></span> 
+                          <span><i class="fab fa-facebook" style="font-size:36px"></i></span> 
+                          <span><i class="fab fa-twitter" style="font-size:36px"></i></span> 
+                          <span><i class="fab fa-youtube" style="font-size:36px"></i></span> 
+                        </p> 
+                    </div>
+                    <div class="col-md-3 col-12 my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-md-3 mt-4">Get in Touch</li>  
+                            <li>www.medoneshop.com</li>  
+                            <li>medoneshop@gmail.com</li>     
+                            <li>+2126524154874</li>
+                        </ul>
+                        
+                    </div>
+                    <div class="col-md-3 col-12 my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-md-3 mt-4">About Us</li>
+                            <li>Terms of Services</li>
+                            <li>Privacy Policy</li>
+                            <li>Help & Support</li>
+                            <li>Accessibility</li>
+                        </ul>
+                    </div>
+                    <div class="col-xl-auto col-md-3 col-12 my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-md-3 mt-4">Your Account</li>
+                            <li>
+                              <div style="width:200px" class="main">
+                                <a th:href="@{/registration}"><button  class="btn" style="font-size: 20px;">SIGN UP</button></a>
+                                <a th:href="@{/login}"><button  class="btn" style="font-size: 20px;">LOG IN</button></a>
+                              </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Second Small footer section start -->
+<footer th:fragment="secondfooter">
+  <span>Created By Mohamed Ben |  <small class="copy-rights cursor-pointer">&#9400; 2021 MedOne Ben Tech </small>| All rights reserved.</span>
+</footer>
+    
+</body>
+</html>

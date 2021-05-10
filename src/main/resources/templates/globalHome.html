@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedOne Shop Application</title>
+    <link rel="stylesheet" href="/css/styleGlobalHome.css">
+    <link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+	integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+	crossorigin="anonymous" />
+</head>
+<body class="hero-anime">
+   <!-- Scroll Up Button -->
+    <div th:replace="fragments :: scrollup"></div>
+
+   <!-- Menu -->
+   <!--NavBar-->
+    <div th:fragment="menu" class="navigation-wrap bg-light start-header start-style">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="navbar navbar-expand-md navbar-light">
+            
+              <a class="navbar-brand" href="#" target="_blank"><img src="/images/logo1.png" alt=""></a>
+              <a class="navbar-brand" href="#" traget="_blank"><h2 class="nameBar">Med<span style="color: crimson;">One</span> Shop</h2></a>	
+              
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto py-4 py-md-0">
+                  <li class="nav-item pl-4 pl-md-0 ml-0 ml-md- active">
+                    <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
+                  </li> 
+                  <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                    <a class="nav-link" href="#About"><i class="fab fa-angellist"></i> About</a>
+                  </li>
+                  <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                    <a class="nav-link" href="#Contact"><i class="fas fa-comment-dots"></i> Contact</a>
+                  </li>
+                </ul>
+              </div>
+             
+            </nav>		
+          </div>
+        </div>
+      </div>
+    </div>
+     
+   
+    <!-- Section part-->
+    <div class="section full-height">
+      <div class="absolute-center">
+        <div class="section">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <h1 class="myName text-center"><span>M</span><span>e</span><span>d</span><span style="color:crimson;">O</span><span style="color:crimson;">n</span><span style="color:crimson">e</span> <span>S</span><span>h</span><span>o</span><span>p</span></h1>
+                <p style="font-size:28px;">Welcome to MedOne Shop !!!</p>
+              </div>	
+            </div>		
+          </div>		
+        </div>
+        <div class="section">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <div id="switch">
+                  <div id="circle"></div>
+                </div>
+              </div>	
+            </div>		
+          </div>			
+        </div>
+
+        <!-- Login and Signin section-->
+        <div class="section">
+          <div class="container">
+            <div class="row">
+              <div class="col-6 mx-auto">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="main">
+                      <a th:href="@{/registration}"><button  class="btn" style="font-size: 20px;">SIGN UP</button></a>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="main">
+                      <a th:href="@{/login}"><button  class="btn" style="font-size: 20px;">LOG IN</button></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Search Field-->
+        <div class="section">
+          <div class="conatiner">
+            <div class="col-12">
+              <div class="main">
+                <a id="scroll" href="#footer"><div class="scroll-down"></div></a><br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <hr class="shine">
+    <!-- About -->
+    <div id="About">
+    <!--First One-->
+    <div class="container">
+      <div class="row">
+        <div class="col-8">
+          <img class="imgAbout" src="/images/about1.jpg" alt="">
+        </div>
+        <div class="col-4">
+          <p class="text-center texto" style="font-size: 24px; font-weight: 400; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serifsss; color: cadetblue;">
+            We bring the season's best mix of 100% certified-organic produce and hand-crafted farm products 
+            conveniently to your door by growing and partnering with local farms and artisans. Each delivery 
+            comes with news from our family farm, delicious recipes, quick tips and the option to customize 
+            your box online.
+          </p>
+        </div>
+      </div>
+    </div>
+     <!--Second One-->
+     <div class="container" style="padding: auto;">
+      <div class="row">
+        <div class="col-4">
+          <p class="text-center texto" style="font-size: 24px; font-weight: 400; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serifsss; color: cadetblue;padding-top: 80px;">
+            We bring the season’s best mix of organic produce and specialty farm products conveniently to your door by growing and partnering with local farms
+            and artisans in your area. Each delivery comes with farm news and recipes!
+          </p>
+        </div>
+        <div class="col-8">
+          <img class="imgAbout"  src="/images/about2.jpg" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="container" id="whyUs">
+      <div class="row">
+        <div class="col-10 mx-auto">
+          <h4 class="text text-center">Why You Should Choose Us?</h4>
+          <p class="text text-center">
+            Because we alwys provide you fresh, healthy and quality while you buy fruits or vegetables.
+            Here are some reasons why you should choose MyFreshBag?
+          </p>
+          <ul class="myList">
+            <li>Save your valuable time</li>
+            <li>Hygiene and quality</li>
+            <li>Major problems at vegetable markets</li>
+            <li>Fast home delivery</li>
+            <li>Easy to place olders</li>
+            <li>Cash on delivery or Onligne</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+    <hr class="shine">
+     <!--Contact-->
+
+      <!--Contact-->
+
+      <section class="contact" id="Contact">
+        <div class=" container max-width">
+            <h2 class="title text-center">Get in touch </h2>
+            <div th:if="${message != null}" class="text text-center">
+                 <h6 th:text="${message}" class="text text-info"></h6>
+            </div>
+            <div class=" row contact-content">
+                <div class=" col-10 mx-auto column right">
+                    
+                    <form th:action="@{/sendMessage}" method="POST">
+                        <div class="fields">
+                            <div class="field name">
+                                <input type="text" name="name" placeholder="Name" required>
+                            </div>
+                            <div class="field email">
+                                <input type="email" name="email" placeholder="Email" required>
+                            </div>
+                        </div>
+                        <div class="field subject">
+                            <input type="text" name="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="field textarea">
+                            <textarea cols="30" rows="10" name="message" placeholder="Message.." required></textarea>
+                        </div>
+                        <div class="button">
+                            <button type="submit">Send message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+   <!-- Footer-->
+   <!-- First Footer section-->
+    <hr class="mx-0 px-0">
+    <div th:replace="fragments :: firstfooter"></div>
+
+   <!-- Second Small footer section start -->
+   <div id="footer" th:replace="fragments :: secondfooter"></div>
+
+
+      <script src="/js/scriptHome.js"></script>
+      
+      
+     
+</body>
+</html>

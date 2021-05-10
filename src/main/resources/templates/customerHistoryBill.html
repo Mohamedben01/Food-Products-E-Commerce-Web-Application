@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	layout:decorator="layout">
+<head th:fragment="header">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedOne Shop</title>
+<link rel="stylesheet" href="/css/styleGlobalHome.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+	integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+	crossorigin="anonymous" />
+<script>
+ $(document).ready(function(){
+	 
+	 $("#myList").on("click", "a", function(){
+		 var date = $(this).attr("value");
+		 //alert("===> "+date);
+		 var subtotal = 0;
+		 var list = " ";
+	 $.ajax({
+			 url: "/api/findBill/date/" +date,
+			 type: "GET",
+			 success: function(excitingBill){	
+				 $.each(excitingBill, function(i, item) {
+					    //alert(item.quantity);
+					    subtotal += item.quantity * item.product.price;
+					    list += '<li  class="list-item"><a class="list-item-link">'+item.quantity+'Kg <span class="item-list-subtext">Of</span> '+item.product.name+' (<span class="item-list-subtext">'+item.product.price+'DH</span>) = '+item.quantity * item.product.price+'DH</a></li>';
+					    $("#myAllCarts").html(list);
+				 });
+				 $("#subtotal").html(parseFloat(subtotal));
+				 $("#total").html(parseFloat(subtotal + 10));
+			 },
+			 error: function(){
+				 alert("error");
+			 }
+		 });
+	 });
+ }); 
+	
+</script>
+</head>
+<body>
+<body class="hero-anime">
+	<!-- Scroll Up Button -->
+	<div th:replace="fragments :: scrollup"></div>
+
+	<!-- Menu -->
+	<div th:replace="fragments :: menu"></div>
+	
+	<!-- Our Bills -->
+<div class="container p-3" style="margin-top: 130px; border-radius: 40px; border: 2px solid #dbdbdb; height: 400px; width: 90%;">
+  <div class="row h-100">
+    <div class=" left-Box col-md-9">
+      <div class="row boxes">
+        <div class="col-sm-7 my-4">
+          <div class="boxone">
+            <div class="content" >
+              <div class="list-wrap">
+                <ul id="myAllCarts" class="list">
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 my-4">
+          <div class="boxtwo">
+            <p class="mytxt">Subtotal: <span id="subtotal">0 </span> DH</p>
+            <p class="mytxt">Shipping: <span>10 </span>DH</p>
+            <p class="mytxt">Total: <span id="total">0 </span> DH</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class=" right-Box col-md-3">
+      <div class="content" data-behaviour="search-on-list">
+        <input type="text" class="input-query" data-search-on-list="search" placeholder="Search..."/>
+        <span class="counter" data-search-on-list="counter"></span>
+        <div class="list-wrap">
+        <ul id="myList" class="list" data-search-on-list="list">
+          <li th:each="date:${dateBills}" id="Bdate" class="list-item" data-search-on-list="list-item">
+            <a th:value="${date}" id="bill_date" class="list-item-link" th:inline="text">[[${date}]]</a>
+          </li>         
+        </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer-->
+	<!-- First Footer section-->
+	<hr class="mx-0 px-0 mt-5">
+	<!-- First Small footer section -->
+	<footer th:fragment="firstfooter" class="first-footer mt-3">
+		<div class="row justify-content-around mb-0 pt-5 pb-0 ">
+			<div class=" col-11">
+				<div class="row justify-content-center">
+					<div
+						class="col-md-3 col-12 font-italic align-items-center mt-md-3 mt-4">
+						<h5>
+							<span> <img src="/images/logo1.png"
+								class="img-fluid mb-1 w-20 h-20 "></span><b class="text-dark">
+								Med<span style="color: crimson;">One</span><span
+								class="text-muted"> Shop</span>
+							</b>
+						</h5>
+						<p class="social mt-md-3 mt-2">
+							<span><i class="fab fa-instagram" style="font-size: 36px"></i></span>
+							<span><i class="fab fa-facebook" style="font-size: 36px"></i></span>
+							<span><i class="fab fa-twitter" style="font-size: 36px"></i></span>
+							<span><i class="fab fa-youtube" style="font-size: 36px"></i></span>
+						</p>
+					</div>
+					<div class="col-md-3 col-12 my-sm-0 mt-5">
+						<ul class="list-unstyled">
+							<li class="mt-md-3 mt-4">Get in Touch</li>
+							<li>www.medoneshop.com</li>
+							<li>medoneshop@gmail.com</li>
+							<li>06524154874</li>
+						</ul>
+
+					</div>
+					<div class="col-md-3 col-12 my-sm-0 mt-5">
+						<ul class="list-unstyled">
+							<li class="mt-md-3 mt-4">Your needs</li>
+							<li>Intergrated Security Platform</li>
+							<li>Core Features</li>
+							<li>Product Features</li>
+							<li>Pricing</li>
+						</ul>
+					</div>
+					<div class="col-xl-auto col-md-3 col-12 my-sm-0 mt-5">
+						<ul class="list-unstyled">
+							<li class="mt-md-3 mt-4">Your Account</li>
+							<li>
+								<div class="main">
+									<a th:href="@{/logout}"><button class="btn"
+											style="font-size: 20px;">LOG OUT</button></a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Second Small footer section start -->
+	<div th:replace="fragments :: secondfooter"></div>
+	<script src="/js/scriptHistory.js"></script>
+
+</body>
+</html>

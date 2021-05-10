@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:fragment="header">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedOne Shop</title>
+
+<link rel="stylesheet" href="/css/styleShoppingCart.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+	integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+	crossorigin="anonymous" />
+
+<body>
+	<!-- Scroll Up Button -->
+	<div th:replace="fragments :: scrollup"></div>
+
+	<!-- Menu -->
+	<div th:replace="fragments :: menu"></div>
+
+   
+	<!-- CartItems -->
+
+	<div class="container myCart">
+	<div class="title text-center">
+	    <h1>My Shopping Cart</h1>
+	</div>
+        
+		<section id="myCart"> 
+			<article class="product" th:each="CP: ${cartPrds}">
+				<header>
+					<a class="remove">
+						<img  th:src="@{${'/product/display/'+ CP.product.id}}" th:alt="${CP.product.name}">
+						<h3><a th:value="${CP.id}" id="delete" >Remove product</a><i style="color: #000; margin-left: 5px;" class="fas fa-trash"></i></h3>
+						
+					</a>
+				</header>
+				<div class="content">
+					<h1  th:text="${CP.product.name}"></h1>
+                    [[${CP.product.product_desc}]]
+				</div>
+
+				<footer class="content">
+					<span class="qt-minus">-</span>
+					<span th:text="${CP.quantity}" class="qt"></span>
+					<span class="qt-plus">+</span>
+					<input type="hidden" id="id" th:value="${CP.id}">
+					<h2 class="full-price" th:inline="text" th:with="result=${CP.quantity * CP.product.price}">
+						[[${result}]]
+					</h2>
+
+					<h2 class="price" th:text="${CP.product.price}"></h2>
+				</footer>
+				
+			</article>
+
+		</section>
+
+	</div>
+
+	<div id="site-footer">
+		<div class="container clearfix">
+
+			<div class="left">
+				<h2 th:inline="text" class="subtotal">Subtotal: <span id="subtotal">[[${Subtotal}]]</span>DH</h2>
+				<h3 class="shipping">Shipping: <span>10.00</span>DH</h3>
+				<a id="emptyBtn" class="btn btn-info" th:href="@{/deleteAllProducts}">Empty Cart</a>
+				<p></p>
+			</div>
+
+			<div class="right">
+				<h1 class="total" >Total: <span id="total"></span>DH</h1>
+				<a data-toggle="modal" href="#checkout" class="btn btnCheck" style="background: crismon;text-decoration:none;">
+				     <i class="fas fa-share"></i> Checkout
+			    </a>
+			</div>
+			
+
+		</div>
+	</div>
+	
+<!-- Choose how to pay -->
+<div class="modal" id="checkout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+	  <div class="modal-content">
+		<div class="row">
+			<div class="col-sm-10 mx-auto text-center">
+				<h2>Choose how to pay</h2>
+			</div>
+			<div class="col-sm-6">
+				<a th:href="@{/CashOnDelivery}"><button type="button" class="btn btn-ch btn-outline">On Delivery</button></a>
+			</div>
+			<div class="col-sm-6">
+				<a th:href="@{/OnlinePayment}"><button type="button" class="btn btn-ch btn-outline" >On Line</button></a>
+			</div>
+		</div>
+	  </div>
+	</div>
+  </div>
+  
+
+  <hr class="md-3 w-100 h-10 bg-dark mt-2">
+	<!-- Footer -->
+	<div th:replace="customerHome :: firstfooter"></div>
+	<!-- Second Small footer section start -->
+	<div th:replace="fragments :: secondfooter"></div>
+	<script src="/js/scriptHome.js"></script>
+
+</body>
+<script src="/js/scriptCart.js"></script>
+</html>

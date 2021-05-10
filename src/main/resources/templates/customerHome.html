@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	layout:decorator="layout">
+<head th:fragment="header">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedOne Shop</title>
+<link rel="stylesheet" href="/css/styleGlobalHome.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+	integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+	crossorigin="anonymous" />
+</head>
+<body class="hero-anime">
+	<!-- Scroll Up Button -->
+	<div th:replace="fragments :: scrollup"></div>
+
+	<!-- Menu -->
+	<div th:replace="fragments :: menu"></div>
+
+	<!-- Cart Count Items-->
+
+	<div class="cart">
+		<span id="itemCounts" th:href="@{/shoppingCart}" class="fa-stack fa-2x has-badge"
+			th:data-count="${nbrItems}"> 
+			<i class="fa fa-circle fa-stack-2x"></i> <i
+			class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+		</span>
+	</div>
+
+	<!-- Section part-->
+	<div class="section full-height">
+		<div class="absolute-center">
+			<div class="section">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<h1 class="myName">
+								<span>M</span><span>e</span><span>d</span><span
+									style="color: crimson;">O</span><span style="color: crimson;">n</span><span
+									style="color: crimson">e</span> <span>S</span><span>h</span><span>o</span><span>p</span>
+							</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Customer details section-->
+			<div class="section">
+				<div class="container boxName">
+					<div class="row">
+						<div class="col-12">
+							<h2 class="userName"
+								th:inline="text"><span>Welcome</span> <span>[[${customer.firstName}]]</span>
+								<span>[[${customer.lastName}]]</span></h2>
+						</div>
+					</div>
+				</div>
+				<div class="section">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div id="switch">
+									<div id="circle"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Search Field-->
+				<div class="section">
+					<div class="conatiner">
+						<div class="row">
+							<div class="col-8 mx-auto">
+								<form class="input-group">
+									<input type="text" class="text-center" placeholder="Search.."
+										id="productName">
+									<button type="submit" data-traget="#searchProductModal" data-toggle="modal" id="search_btn" >
+										<i data-toggle="tooltip" class="fa fa-search"></i>
+									</button>
+								 </form>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="main">
+								<a id="scroll" href="#products"><span class="scroll-down"></span></a><br>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- The Modal 'search' -->
+<div class="modal" id="searchProductModal">
+	<div class="modal-dialog w-150 h-150 modal-dialog-centered">
+		<div class="modal-content"
+				style="background-color: transparent; border: none;">			
+	<!-- Modal body -->
+	<div class="modal-body">
+	  <form  class="vegetablePart col-sm-10">
+			<div class="image-flip w-80 h-80" ontouchstart="this.classList.toggle('hover');">
+				<div class="mainflip">
+					<div class="frontside">
+						<img id="productImg" class="card-img-top">
+						<div class="card">
+							<div class="card-body text-center">
+								<h4 id="name" class="card-title"></h4>
+								<p class="card-text">
+									1 KG <i class="fas fa-arrows-alt-h"></i> <span id="price"></span> DH
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="backside">
+						<div class="card">
+							<div class="card-body text-center mt-4">
+								<h4 id="name"class="card-title"></h4>
+								<p style="color:#000;font-family: cursive;" id="desc" class="card-text"></p>
+								<button id="add_btn" class="btn float-center">
+									Add <i class="fas fa-cart-plus w-90"></i>
+								</button>
+								<input type="hidden" id="product_id">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		 </form>
+    </div>
+    </div>
+  </div>
+</div>
+ <hr class="shine">
+	<!-- products-->
+	<h3 class="text text-center"
+		style="font-size: 24px; font-weight: 500; color: crimson">
+		<i class="fas fa-angle-double-right"></i> Our Store <i
+			class="fas fa-angle-double-left"></i>
+	</h3>
+	<div id="products" class="container-fluid">
+		<div class="row">
+			<div class="col-8 mx-auto btn-group" style="justify-content: center;margin-bottom: 8px;margin-top:3px;" role="group" aria-label="Basic example">
+			   <form th:action="@{/customerHome}">
+				 <button type="submit" name="product_type" value="Vegetable" class="btn btn-prd" style="background: crimson;">Vegetables</button>
+				 <button type="submit" name="product_type" value="Fruit" class="btn btn-prd" style="background: crimson;">Fruits</button>
+				 <button type="submit" name="product_type" value="Legume"class="btn btn-prd" style="background: crimson;">Grains</button>
+				 <button type="submit" name="product_type" value="Nuts" class="btn btn-prd" style="background: crimson;">Nuts & Seeds</button>
+		       </form>
+			</div>
+			<div class="col-10 mx-auto mt-1">
+				<div class="row">
+					<!-- Products -->
+					<form class="vegetablePart col-sm-4" th:each="VP:${products}">
+						<div class="image-flip "
+							ontouchstart="this.classList.toggle('hover');">
+							<div class="mainflip">
+								<div class="frontside">
+									<img class="card-img-top"
+										th:src="@{${'/product/display/'+ VP.id}}" th:alt="${VP.name}">
+									<div class="card">
+										<div class="card-body text-center">
+											<h4 th:text="${VP.name}" class="card-title"></h4>
+											<p th:inline="text" style="color:#000;font-family: cursive;" class="card-text">
+												1 KG <i class="fas fa-arrows-alt-h"></i> [[${VP.price}]] DH
+											</p>
+											
+										</div>
+									</div>
+								</div>
+								<div class="backside">
+									<div class="card">
+										<div class="card-body text-center mt-4">
+											<h4 th:text="${VP.name}" class="card-title"></h4>
+											<p style="color:#000;font-family: cursive;" th:text="${VP.product_desc}" class="card-text"></p>
+											<button id="add_btn" class="btn w-90">
+												Add <i class="fas fa-cart-plus"></i>
+											</button>
+											<input type="hidden" th:value="${VP.id}" id="product_id" name="product_id">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+ <!-- The Modal Get in Touch -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg modal-dialog-centered" >
+      <div class="modal-content" >
+        <!-- Modal body -->
+        <div class="modal-body">
+        <!-- Message Box -->
+          <div class=" container max-width">
+            <h2 class="title text-center">Get in touch </h2>
+            <div th:if="${message != null}" class="text text-center">
+                 <h6 th:text="${message}" class="text text-info"></h6>
+            </div>
+            <div class=" row contact-content">
+                <div class=" col-10 mx-auto column right">
+                    
+                    <form th:action="@{/sendMessage}" method="POST">
+                        <div class="fields">
+                            <div class="field name">
+                                <input type="text" name="name" th:value="${customer.firstName}+${customer.lastName}" placeholder="Name" required>
+                            </div>
+                            <div class="field email">
+                                <input type="email" th:value="${customer.email}" name="email" placeholder="Email" required>
+                            </div>
+                        </div>
+                        <div class="field subject">
+                            <input type="text" name="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="field textarea">
+                            <textarea cols="30" rows="10" name="message" placeholder="Message.." required></textarea>
+                        </div>
+                        <div class="button">
+                            <button id="sendingBtn" type="submit">Send message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+	<!-- Footer-->
+	<!-- First Footer section-->
+	<hr class="mx-0 px-0 mt-5">
+	<!-- First Small footer section -->
+	<footer th:fragment="firstfooter" class="first-footer mt-3">
+		<div class="row justify-content-around mb-0 pt-5 pb-0 ">
+			<div class=" col-11">
+				<div class="row justify-content-center">
+					<div
+						class="col-md-3 col-12 font-italic align-items-center mt-md-3 mt-4">
+						<h5>
+							<span> <img src="/images/logo1.png"
+								class="img-fluid mb-1 w-20 h-20 "></span><b class="text-dark">
+								Med<span style="color: crimson;">One</span><span
+								class="text-muted"> Shop</span>
+							</b>
+						</h5>
+						<p class="social mt-md-3 mt-2">
+							<span><i class="fab fa-instagram" style="font-size: 36px"></i></span>
+							<span><i class="fab fa-facebook" style="font-size: 36px"></i></span>
+							<span><i class="fab fa-twitter" style="font-size: 36px"></i></span>
+							<span><i class="fab fa-youtube" style="font-size: 36px"></i></span>
+						</p>
+					</div>
+					<div class="col-md-3 col-12 my-sm-0 mt-5">
+						<ul class="list-unstyled">
+							<li class="mt-md-3 mt-4">Get in Touch</li>
+							<li>www.medoneshop.com</li>
+							<li>medoneshop@gmail.com</li>
+							<li>06524154874</li>
+						</ul>
+
+					</div>
+					<div class="col-md-3 col-12 my-sm-0 mt-5">
+						<ul class="list-unstyled">
+							<li class="mt-md-3 mt-4">About Us</li>
+                            <li>Terms of Services</li>
+                            <li>Privacy Policy</li>
+                            <li>Help & Support</li>
+                            <li>Accessibility</li>
+						</ul>
+					</div>
+					<div class="col-xl-auto col-md-3 col-12 my-sm-0 mt-5">
+						<ul class="list-unstyled">
+							<li class="mt-md-3 mt-4">Your Account</li>
+							<li>
+								<div class="main">
+									<a th:href="@{/logout}"><button class="btn"
+											style="font-size: 20px;">LOG OUT</button></a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Second Small footer section start -->
+	<div th:replace="fragments :: secondfooter"></div>
+	<script src="/js/scriptHome.js"></script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/styleCash.css">
+    <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+	integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+	crossorigin="anonymous" />
+	
+    <script>
+   
+    $(document).ready(function(){
+    	// Get All Details About Customer
+    	 $.ajax({
+    			type: 'GET',
+    			url: '/api/updateCustomer',
+    			success: function(customer){
+    				$('.d-flex .firstName').val(customer.firstName);
+    				$('.d-flex .lastName').val(customer.lastName);
+    				$('.d-flex .email').val(customer.email);
+    				$('.d-flex .address').val(customer.customerDetail.address);
+    				$('.d-flex .city').val(customer.customerDetail.city);
+    				$('.d-flex .state').val(customer.customerDetail.state);
+    				$('.d-flex .zip').val(customer.customerDetail.zipCode);
+    				$('.d-flex .phone').val(customer.customerDetail.phone);
+    			}
+    		});
+    	 
+    	// Terms Box
+        $('.terms').hide();
+        $('#r_terms').on('click',function(){
+        	$('button').toggleClass("opacity");
+        	$('.terms').toggle();
+        	
+        });
+        
+        // Confirm Order
+        $('#msgCompleted').hide();
+        $('#confirmBtn').on('click', function(){
+        	
+        	// Check Terms Condition
+        	if($('input[name="checkTerm"]').is(':checked')){
+        		//var total = parseFloat($('#totalCost').html());
+        		//alert('=====> '+total);
+        		var url = '/api/confirmorder';
+        		$.ajax({
+        			url: url,
+        			type: 'GET',
+        			success: function(msg){
+        				//alert(msg);
+        				$('#msgCompleted').show();
+        				$('.container').css('opacity','0.5');
+        			},
+        			error: function(){
+        				alert("Error!");
+        			},
+        		});
+        	}
+        	else{
+        		alert("Check the box to indicate that you have read and agree to the terms of the MedOne Shop.");
+        	}
+        });
+    });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <h2>Cash on Delivery</h2>
+        </div>
+      <div class="d-flex">
+        <form action="" method="">
+          <label>
+            <span class="fname">First Name <span class="required">*</span></span>
+            <input class="firstName" type="text" name="fname">
+          </label>
+          <label>
+            <span class="lname">Last Name <span class="required">*</span></span>
+            <input class="lastName" type="text" name="lname">
+          </label>
+          <label>
+            <span>Street Address <span class="required">*</span></span>
+            <input class="address"type="text" name="address" placeholder="House number and street name" required>
+          </label>
+          <label>
+            <span>Town / City <span class="required">*</span></span>
+            <input class="city" type="text" name="city"> 
+          </label>
+          <label>
+            <span>State / County <span class="required">*</span></span>
+            <input class="state" type="text" name="state"> 
+          </label>
+          <label>
+            <span>Postcode / ZIP <span class="required">*</span></span>
+            <input class="zip" type="text" name="city"> 
+          </label>
+          <label>
+            <span>Phone <span class="required">*</span></span>
+            <input class="phone" type="tel" name="city"> 
+          </label>
+          <label>
+            <span>Email Address <span class="required">*</span></span>
+            <input class="email"  type="email" name="city"> 
+          </label>
+        </form>
+        <div class="Yorder">
+          <table>
+            <tr>
+              <th colspan="2">Your order</th>
+            </tr>
+            <tr>
+              <td>Subtotal</td>
+              <td th:inline="text">[[${subtotal}]] DH</td>
+            </tr>
+            <tr>
+              <td>Shipping</td>
+              <td>10.00 DH</td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td id="totalCost" th:inline="text">[[${subtotal} + 10]] DH</td>
+            </tr>
+          </table><br>
+          <div>
+            <input type="checkBox" name="checkTerm" id="checkTerm"> I agree to the <a id ="r_terms">terms of services.</a>  
+          </div>
+          <div  class="terms">
+              <h4>Terms and Conditions</h4>
+              <p>
+                Welcome to our website
+                These terms and conditions outline the rules and regulations for the use of our company.
+                By accessing this website we assume you accept these terms and conditions. Do not continue 
+                to use our website if you do not agree to take all of the terms and conditions stated on this page.
+              </p>
+          </div>
+          <div>
+          <button type="button" id="confirmBtn"><i class="far fa-hand-point-up"></i> Confirm Order</button>
+          <button type="button" id="store" ><i class="fa fa-arrow-circle-left"></i><a th:href="@{/shoppingCart}"> Back To Shopping Cart</a></button>
+        </div>
+       </div>
+    </div>
+ </div>
+ 
+<!-- Message-->
+<div id="msgCompleted">
+	  <div class="content">
+		<div class="row">
+			<div class="col-sm-10 mx-auto text-center">
+				<h2>
+				   Thank you for shopping with us<br>
+				   We hope to see you again soon
+				</h2>
+			</div>
+			<div class="col-sm-6">
+				<a th:href="@{/customerHome}"><button type="button" class="btn btn-outline">Store</button></a>
+			</div>
+		</div>
+	  </div>
+  </div>
+</body>
+</html>

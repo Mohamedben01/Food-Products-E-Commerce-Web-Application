@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedOne Shop</title>
+    <link rel="stylesheet" href="/css/stylePayment.css">
+    <link rel="stylesheet"
+   href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script
+   src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<script
+   src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+   integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+   crossorigin="anonymous" />
+   <script>
+    $(document).ready(function(){
+    	$('[data-toggle="popover"]').popover();
+    	
+        $('.img_cvv').hide();      
+        $('.cvv').on('click',function(){
+           $('.img_cvv').toggle();
+           $('.img_cvv').attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOYAAACOCAMAAAASE4S+AAAAAXNSR0IArs4c6QAAAadQTFRFAAAAzbFj+NyAyLNg+N2DzbRk+96CzrVj+96AzrNj+92By7Rl+92AzbRl/eCDzrRl/t+DzrVl/t+CzbVm/t+C3MFt3MFv/N2B/N6CzrRm/uCDzrRm/uCC7M93/N6CAAAAAQEBAgIBBAQCBQUDBwcECQgFDAsGDg0HEA4IEQ8JFRMLFxUMIBwQIR0RJSETKyYWLikYLyoYMCsZMSsZNC4bNzEcOTIdQDkhQTkhQzsiRT0jRj4kSkEmTEMnWE4tWU8uWk8uXFEvXVIwXlMwX1QxaV02bWA4bmE5cWQ6eGo+eWs+fW5Afm9Bi3pHjHtIkH9KmIZOmYdPnIlQnYpRo5BUppJVqJRWqpZXq5dYrJdYrZhZuaNfvaZhvqdiwKljwapjxK1lybFnyrJoy7NozrVm1Ltq171u2L5v2b9s2b9t2sBt3cNy3zEx3zIx38Rz4MVz4cZ04kI552NI6GVJ6Mx36s5368957dF674xb79J78NN78dV78tV789Z99Nd99dh+9rZv9th+9tl+99l/+duA+sx5+sx6+t2B+92B/N6B/d+C/uCD////AikOogAAAB90Uk5TACQkJSU9PT4+Q0NERJqav7/AwNjY4uLi4u7u8/P6+u6knPAAAAJkSURBVHja7d3pTxNBGMfxQbwAW06Pcj0tntQT8b7v+0JFxaserQcuKlQUFbFUaqvjH+1uG0lMfEETie4z39+bJ/tik/1kjt3MbDLGBFkWbeu0CtPZFq03v7KwxSpO04KKcmm7VZ32xeW2VK70nUF7tlj1afJnH+tA6k3UBWbUrHKBudJ0u8DsNtaJwIQJEyZMmDBhwoQJEyZMmPPCFCcCEyZMmDBhwoQJEyZMmDBhwoQJEyZMmDBhwoQJ010m+5swYcKECRMmTJgwYcKECRMmTJgwYcIMFfPHP8/vz5PLjnpzzmg2F07mxIhXVUYmwsjMVan0nbkQMrOeN1aY+zAsjHleNoRMf1x+rWa6KfjjM4RMvxdWN63+4QaYMGHC/EvM6b0HgpI6tvtoyq9vz+4/clcf89sJ2eiXIZGEyJD9sEl6RAa1MVPbpczsk8vT52SHHZCDUxelXxtzW/x4wPx+6cxn+0A2208PX9pB2aONef7xk3JrBjkth4Jysnf9fX1T0Czzmqx+6pcvcel/pJd5RRLXg1p6d0vWvdHKHJCeG2XljLVb5aZS5r2E3A6uTiUu2Km1klLK3CXxZDK5xd6RNYd3St+MTuaryr94G6y92iuy77X+b9rSi/d8usOEyZIXC5gsR7O5MN9bRexvwoQJEyZMmDBhwoQJEyZMmDBhwoT5vzNLLihLJu8CM2+6XGB2meUuMFeYyEf9ysmIqcsUtSuLmQZjGp8pdxafNxtjamIZ1f12MhOrDQ6uXhRLD4/nVb4/S/nx4XRsSeUY8prGtOI0186eKl8Xae3QSOxojTSUgT8BEvkXyqDHONgAAAAASUVORK5CYII=');
+       });
+    })
+       
+   </script>
+</head>
+<body>
+
+
+<div class="container">
+  <div id="Checkout" class="inline">
+      <h1>Pay Invoice</h1>
+      <div class="card-row">
+          <span class="visa"></span>
+          <span class="mastercard"></span>
+      </div>
+      <form>
+          <div class="form-group">
+              <label for="PaymentAmount">Payment amount</label>
+              <div class="amount-placeholder">
+                  <span th:inline="text">[[${total}]]</span>
+                  <span>DH</span>
+              </div>
+          </div>
+          <div class="form-group">
+              <label or="NameOnCard">Name on card</label>
+              <input id="NameOnCard" class="form-control" type="text" maxlength="255"></input>
+          </div>
+          <div class="form-group">
+              <label for="CreditCardNumber">Card number</label>
+              <input id="CreditCardNumber" class="null card-image form-control" type="text"></input>
+          </div>
+          <div class="expiry-date-group form-group">
+              <label for="ExpiryDate">Expiry date</label>
+              <input id="ExpiryDate" class="form-control" type="text" placeholder="MM / YY" maxlength="7"></input>
+          </div>
+          <div class="security-code-group form-group">
+              <label for="SecurityCode">Security code</label>
+              <div class="input-container" >
+                  <input id="SecurityCode" class="form-control" type="text" ></input>
+                  <i placeholder="CVV" class="fa fa-question-circle cvv"></i>
+                  <img  class="img_cvv" >
+              </div>
+          </div>
+          <div class="zip-code-group form-group">
+              <label for="ZIPCode">ZIP/Postal code</label>
+              <div class="input-container">
+                  <input id="ZIPCode" class="form-control" type="text" maxlength="10"></input>
+                  <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="left" data-content="Enter the ZIP/Postal code for your credit card billing address."><i class="fa fa-question-circle"></i></a>
+              </div>
+          </div>
+          <button id="PayButton" class="btn btn-block btn-success submit-button" type="submit">
+              <span class="align-middle" th:inline="text"><i class="fas fa-hand-point-up"></i> Pay [[${total}]] DH</span>
+          </button>
+      </form>
+  </div>
+</div>
+</body>
+</html>
